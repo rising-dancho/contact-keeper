@@ -6,7 +6,7 @@
 npm install
 ```
 
-### Run backend server
+### Run Backend Server
 
 React will run on http://localhost:8080
 
