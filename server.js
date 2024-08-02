@@ -1,5 +1,9 @@
 const express = require('express');
 const connectDB = require('./config/db');
+const dotenv = require('dotenv');
+
+// enable .env variable: "process" is a global object available in node applications
+dotenv.config();
 
 const app = express();
 
@@ -7,7 +11,7 @@ const app = express();
 connectDB();
 
 // Init Middleware
-app.use(express.json({ extended: false }));
+app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 const baseUrl = '/api/v1';
