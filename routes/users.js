@@ -44,7 +44,7 @@ router.post(
 
       await user.save();
 
-      // JWT
+      // Creating a JWT token and sending it
       const payload = {
         user: {
           id: user.id,
