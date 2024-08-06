@@ -8,7 +8,7 @@
     "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
     "start:frontend": "cross-env FRONTEND_PATH=%cd%\\frontend npm run start:frontend:dynamic",
     "start:backend": "cross-env BACKEND_PATH=%cd%\\backend npm run start:backend:dynamic",
-    "start:frontend:dynamic": "cd %FRONTEND_PATH% && npm start",
+    "start:frontend:dynamic": "cd %FRONTEND_PATH% && npm run dev",
     "start:backend:dynamic": "cd %BACKEND_PATH% && npm run dev"
   },
   "author": "",
