@@ -35,4 +35,6 @@ export default defineConfig(({ mode }) => {
   };
 });
 
-// resolve cors and environment errors: https://chatgpt.com/share/fd278027-6a40-415c-a57d-390bab309c71
+// resolve cors and environment errors: 
+// - https://chatgpt.com/share/fd278027-6a40-415c-a57d-390bab309c71
+// - https://chatgpt.com/share/301b4ff2-2c7a-4cb6-9856-94f7a2d8dda6
