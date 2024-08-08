@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ title, icon }) => {
+const Navbar = ({ title = 'Contact Keeper', icon = 'fas fa-id-card-alt' }) => {
   return (
     <div className="navbar bg-primary">
       <h1>
@@ -18,11 +18,6 @@ const Navbar = ({ title, icon }) => {
       </ul>
     </div>
   );
-};
-
-Navbar.defaultProps = {
-  title: 'Contact Keeper',
-  icon: 'fas fa-id-card-alt',
 };
 
 export default Navbar;
