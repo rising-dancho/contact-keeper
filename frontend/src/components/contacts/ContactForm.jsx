@@ -1,7 +1,9 @@
-import { useState } from 'react';
-import contactContext from '../context/contact/contactContext';
+import { useContext, useState } from 'react';
+import ContactContext from '../context/contact/contactContext';
 
 const ContactForm = () => {
+  const contactContext = useContext(ContactContext);
+
   const [contact, setContact] = useState({
     name: '',
     email: '',
