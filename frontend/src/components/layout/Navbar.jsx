@@ -15,6 +15,9 @@ const Navbar = ({ title = 'Contact Keeper', icon = 'fas fa-id-card-alt' }) => {
         <li>
           <Link to="/about">About</Link>
         </li>
+        <li>
+          <Link to="/register">Register</Link>
+        </li>
       </ul>
     </div>
   );
