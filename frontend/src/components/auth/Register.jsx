@@ -10,14 +10,23 @@ const Register = () => {
 
   const { name, email, password, confirmPassword } = user;
 
-  function onChange() {}
+  function onChange(e) {
+    setUser({ ...user, [e.target.name]: e.target.value });
+  }
+
+  function onSubmit(e) {
+    e.preventDefault();
+    alert(
+      `register submitted  ${name}  ${email}  ${password}  ${confirmPassword}`
+    );
+  }
 
   return (
     <div className="form-container">
       <h1>
         Account <span className="text-primary">Register</span>
       </h1>
-      <form>
+      <form onSubmit={onSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <input type="text" name="name" value={name} onChange={onChange} />
