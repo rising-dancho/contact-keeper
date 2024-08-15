@@ -10,7 +10,8 @@ const Alerts = () => {
       const { type, msg } = alert;
       return (
         <div key={alert.id} className={`alert alert-${type}`}>
-          <i className="fas fa-info-circle" /> {msg}
+          <i className="fas fa-info-circle" />
+          &nbsp;&nbsp;{msg}
         </div>
       );
     })

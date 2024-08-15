@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import AlertContext from '../context/alert/alertContext';
 
 const Login = () => {
+  const alertContext = useContext(AlertContext);
+  const { alerts, setAlert } = alertContext;
   const [user, setUser] = useState({
     email: '',
     password: '',
@@ -14,7 +17,11 @@ const Login = () => {
 
   function onSubmit(e) {
     e.preventDefault();
-    alert(`login submitted   ${email}  ${password}  `);
+    if (email === '' || password === '') {
+      setAlert('Please enter all fields.', 'danger');
+    } else {
+      setAlert(`Login successful!`, 'success');
+    }
   }
 
   return (

@@ -25,7 +25,7 @@ const Register = () => {
       password === '' ||
       confirmPassword === ''
     ) {
-      setAlert('Please enter all fields..', 'danger');
+      setAlert('Please enter all fields.', 'danger');
     } else if (password !== confirmPassword) {
       setAlert('Passwords do not match', 'danger');
     } else {
