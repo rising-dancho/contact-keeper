@@ -31,7 +31,7 @@ const Register = () => {
 
   function onChange(e) {
     setUser({ ...user, [e.target.name]: e.target.value });
-  }y7586
+  }
 
   function onSubmit(e) {
     e.preventDefault();
