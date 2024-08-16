@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const connectDB = require('./config/db');
 const dotenv = require('dotenv');
 
@@ -7,16 +8,19 @@ dotenv.config();
 
 const app = express();
 
+// Enable CORS for all routes
+app.use(cors());
+
 // Connect Database
 connectDB();
 
 // Init Middleware
 app.use(express.json());
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT;
 const baseUrl = '/api/v1';
 
-app.get('/', (req, res) => res.send({ msg: 'App: Contact Keeper' }));
+app.get('/', (req, res) => res.send({ msg: 'App: ntact Keeper' }));
 
 // Define routes
 app.use(`${baseUrl}/users`, require('./routes/users'));
