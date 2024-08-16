@@ -24,14 +24,18 @@ const AuthState = (props) => {
 
   // Load User
   // Register User
-  const register = async (formData) => {
+  async function register(formData) {
     const config = {
       headers: {
         'Content-Type': 'application/json',
       },
     };
     try {
-      const res = await axios.post('/api/users/', formData, config);
+      const res = await axios.post(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/users/`,
+        formData,
+        config
+      );
 
       dispatch({
         type: REGISTER_SUCCESS,
@@ -43,10 +47,15 @@ const AuthState = (props) => {
         payload: error.response.data.msg,
       });
     }
-  };
+  }
   // Login User
   // Logout
   // Clear
+  function clearErrors() {
+    dispatch({
+      type: CLEAR_ERRORS,
+    });
+  }
 
   const [state, dispatch] = useReducer(authReducer, initialState);
 
@@ -58,6 +67,8 @@ const AuthState = (props) => {
         loading: state.loading,
         user: state.null,
         error: state.error,
+        register,
+        clearErrors,
       }}
     >
       {props.children}
