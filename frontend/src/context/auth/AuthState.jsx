@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import AuthContext from './authContext';
 import authReducer from './authReducer';
 import axios from 'axios';
+import setAuthToken from '../../utils/setAuthToken';
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
@@ -24,7 +25,10 @@ const AuthState = (props) => {
 
   // Load User
   async function loadUser() {
-    // TODO: load token into global headers
+    // load token into global headers
+    if (localStorage.token) {
+      setAuthToken(localStorage.token);
+    }
 
     try {
       const res = await axios.get(
@@ -60,6 +64,8 @@ const AuthState = (props) => {
         type: REGISTER_SUCCESS,
         payload: res.data,
       });
+
+      loadUser(); // supply the jwt token to the headers (for authentication)
     } catch (error) {
       dispatch({
         type: REGISTER_FAIL,
@@ -88,6 +94,7 @@ const AuthState = (props) => {
         error: state.error,
         register,
         clearErrors,
+        loadUser,
       }}
     >
       {props.children}

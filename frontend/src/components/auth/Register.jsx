@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const alertContext = useContext(AlertContext);
@@ -8,6 +9,8 @@ const Register = () => {
 
   const authContext = useContext(AuthContext);
   const { register, error, clearErrors, isAuthenticated } = authContext;
+
+  const navigate = useNavigate();
 
   const [user, setUser] = useState({
     name: '',
@@ -17,11 +20,6 @@ const Register = () => {
   });
 
   useEffect(() => {
-    if (error) {
-      setAlert(error, 'danger');
-      clearErrors();
-    }
-
     if (isAuthenticated) {
       setAlert('Registration successful!', 'success');
       setUser({
@@ -30,8 +28,15 @@ const Register = () => {
         password: '',
         confirmPassword: '',
       });
+      navigate('/');
     }
-  }, [error, isAuthenticated]);
+
+    if (error) {
+      setAlert(error, 'danger');
+      clearErrors();
+    }
+    // eslint-disable-next-line
+  }, [error, isAuthenticated, navigate]);
 
   const { name, email, password, confirmPassword } = user;
 
