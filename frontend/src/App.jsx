@@ -5,9 +5,11 @@ import About from './components/pages/About';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Alerts from './components/layout/Alerts';
-import ContactState from './components/context/contact/ContactState';
-import AuthState from './components/context/auth/AuthState';
-import AlertState from './components/context/alert/alertState';
+
+// Context
+import ContactState from './context/contact/ContactState';
+import AuthState from './context/auth/AuthState';
+import AlertState from './context/alert/alertState';
 
 function App() {
   return (

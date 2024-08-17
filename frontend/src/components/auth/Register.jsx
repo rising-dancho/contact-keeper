@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import AlertContext from '../context/alert/alertContext';
-import AuthContext from '../context/auth/authContext';
+import AlertContext from '../../context/alert/alertContext';
+import AuthContext from '../../context/auth/authContext';
 
 const Register = () => {
   const alertContext = useContext(AlertContext);
@@ -8,6 +8,13 @@ const Register = () => {
 
   const authContext = useContext(AuthContext);
   const { register, error, clearErrors, isAuthenticated } = authContext;
+
+  const [user, setUser] = useState({
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
 
   useEffect(() => {
     if (error) {
@@ -17,15 +24,14 @@ const Register = () => {
 
     if (isAuthenticated) {
       setAlert('Registration successful!', 'success');
+      setUser({
+        name: '',
+        email: '',
+        password: '',
+        confirmPassword: '',
+      });
     }
   }, [error, isAuthenticated]);
-
-  const [user, setUser] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-  });
 
   const { name, email, password, confirmPassword } = user;
 

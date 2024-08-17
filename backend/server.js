@@ -20,7 +20,7 @@ app.use(express.json());
 const PORT = process.env.PORT;
 const baseUrl = '/api/v1';
 
-app.get('/', (req, res) => res.send({ msg: 'App: ntact Keeper' }));
+app.get('/', (req, res) => res.send({ msg: 'App: Contact Keeper' }));
 
 // Define routes
 app.use(`${baseUrl}/users`, require('./routes/users'));

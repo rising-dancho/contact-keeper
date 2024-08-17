@@ -23,6 +23,25 @@ const AuthState = (props) => {
   };
 
   // Load User
+  async function loadUser() {
+    // TODO: load token into global headers
+
+    try {
+      const res = await axios.get(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/auth`
+      );
+
+      dispatch({
+        type: USER_LOADED,
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: AUTH_ERROR,
+      });
+    }
+  }
+
   // Register User
   async function register(formData) {
     const config = {
