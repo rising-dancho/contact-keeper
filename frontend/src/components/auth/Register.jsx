@@ -4,9 +4,11 @@ import AuthContext from '../../context/auth/authContext';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
+  // Alert
   const alertContext = useContext(AlertContext);
   const { setAlert } = alertContext;
 
+  // Auth
   const authContext = useContext(AuthContext);
   const { register, error, clearErrors, isAuthenticated } = authContext;
 
@@ -18,6 +20,8 @@ const Register = () => {
     password: '',
     confirmPassword: '',
   });
+
+  const { name, email, password, confirmPassword } = user;
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -37,8 +41,6 @@ const Register = () => {
     }
     // eslint-disable-next-line
   }, [error, isAuthenticated, navigate]);
-
-  const { name, email, password, confirmPassword } = user;
 
   function onChange(e) {
     setUser({ ...user, [e.target.name]: e.target.value });

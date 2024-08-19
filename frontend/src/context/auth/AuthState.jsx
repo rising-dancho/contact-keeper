@@ -73,7 +73,35 @@ const AuthState = (props) => {
       });
     }
   }
+
   // Login User
+  async function login(formData) {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/auth/`,
+        formData,
+        config
+      );
+
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: res.data,
+      });
+
+      loadUser(); // supply the jwt token to the headers (for authentication)
+    } catch (error) {
+      dispatch({
+        type: LOGIN_FAIL,
+        payload: error.response.data.msg,
+      });
+    }
+  }
+  
   // Logout
   // Clear
   function clearErrors() {
@@ -93,6 +121,7 @@ const AuthState = (props) => {
         user: state.null,
         error: state.error,
         register,
+        login,
         clearErrors,
         loadUser,
       }}
