@@ -7,13 +7,18 @@ const Navbar = ({ title = 'Contact Keeper', icon = 'fas fa-id-card-alt' }) => {
 
   const { isAuthenticated, logout, user } = authContext;
 
+  // console.log(user) //debugging user
+  // Only destructure if user exists
+  // const name = user?.name;
+  const email = user?.email;
+
   function onLogout() {
     logout();
   }
 
   const authLinks = (
     <>
-      <li>Hello, {user && user.name}</li>
+      <li>Hello, {user && email}</li>
       <li>
         <Link onClick={onLogout} to="/login">
           <i className="fas fa-sign-out-alt"></i>{' '}

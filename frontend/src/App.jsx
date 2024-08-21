@@ -5,6 +5,7 @@ import About from './components/pages/About';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Alerts from './components/layout/Alerts';
+import PrivateRoute from './components/routing/PrivateRoute';
 
 // Context
 import ContactState from './context/contact/ContactState';
@@ -29,7 +30,9 @@ function App() {
               <div className="container">
                 <Alerts />
                 <Routes>
-                  <Route path="/" element={<Home />} />
+                  <Route element={<PrivateRoute />}>
+                    <Route path="/" element={<Home />} />
+                  </Route>
                   <Route path="/about" element={<About />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<Login />} />

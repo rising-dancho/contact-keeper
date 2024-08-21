@@ -35,6 +35,8 @@ const AuthState = (props) => {
         `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/auth`
       );
 
+      // console.log("AUTH DATA", res.data.name)
+
       dispatch({
         type: USER_LOADED,
         payload: res.data,
@@ -124,7 +126,7 @@ const AuthState = (props) => {
         token: state.token,
         isAuthenticated: state.isAuthenticated,
         loading: state.loading,
-        user: state.null,
+        user: state.user,
         error: state.error,
         register,
         login,
