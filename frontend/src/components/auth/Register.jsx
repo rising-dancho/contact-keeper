@@ -79,7 +79,7 @@ const Register = () => {
             name="name"
             value={name}
             onChange={onChange}
-            required
+            // required
           />
         </div>
         <div className="form-group">
@@ -89,7 +89,7 @@ const Register = () => {
             name="email"
             value={email}
             onChange={onChange}
-            required
+            // required
           />
         </div>
         <div className="form-group">
@@ -99,7 +99,7 @@ const Register = () => {
             name="password"
             value={password}
             onChange={onChange}
-            required
+            // required
             minLength="6"
           />
         </div>
@@ -110,7 +110,7 @@ const Register = () => {
             name="confirmPassword"
             value={confirmPassword}
             onChange={onChange}
-            required
+            // required
             minLength="6"
           />
         </div>

@@ -46,7 +46,9 @@ const Login = () => {
         email,
         password,
       });
-      setAlert(`Login successful!`, 'success');
+      if (!error === 'Invalid Credentials') {
+        setAlert(`Login successful!`, 'success');
+      }
     }
   }
 
@@ -63,7 +65,7 @@ const Login = () => {
             name="email"
             value={email}
             onChange={onChange}
-            required
+            // required
           />
         </div>
         <div className="form-group">
@@ -73,7 +75,7 @@ const Login = () => {
             name="password"
             value={password}
             onChange={onChange}
-            required
+            // required
           />
         </div>
         <input
