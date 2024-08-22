@@ -30,9 +30,9 @@ function App() {
               <div className="container">
                 <Alerts />
                 <Routes>
-                  <Route element={<PrivateRoute />}>
-                    <Route path="/" element={<Home />} />
-                  </Route>
+                  {/* <Route element={<PrivateRoute />}>
+                  </Route> */}
+                  <Route path="/" element={<Home />} />
                   <Route path="/about" element={<About />} />
                   <Route path="/register" element={<Register />} />
                   <Route path="/login" element={<Login />} />

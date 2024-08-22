@@ -3,6 +3,7 @@ import axios from 'axios';
 import ContactContext from './contactContext';
 import contactReducer from './contactReducer';
 import {
+  GET_CONTACTS,
   ADD_CONTACT,
   DELETE_CONTACT,
   SET_CURRENT,
@@ -10,18 +11,34 @@ import {
   UPDATE_CONTACT,
   FILTER_CONTACTS,
   CLEAR_FILTER,
+  CLEAR_CONTACTS,
   CONTACT_ERROR,
 } from '../types';
 
 const ContactState = (props) => {
   const initialState = {
-    contacts: [],
+    contacts: null,
     current: null,
     filtered: null,
     error: null,
+    loading: false,
   };
 
   const [state, dispatch] = useReducer(contactReducer, initialState);
+
+  // Get Contacts
+  async function getContacts() {
+    try {
+      const res = await axios.get(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/contacts`,
+        contact,
+        config
+      );
+      dispatch({ type: GET_CONTACTS, payload: res.data });
+    } catch (error) {
+      dispatch({ type: CONTACT_ERROR, payload: error.response.msg });
+    }
+  }
 
   // Add Contact
   async function addContact(contact) {
@@ -31,7 +48,11 @@ const ContactState = (props) => {
       },
     };
     try {
-      const res = await axios.post('/api/v1/contacts', contact, config);
+      const res = await axios.post(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/contacts`,
+        contact,
+        config
+      );
       dispatch({ type: ADD_CONTACT, payload: res.data });
     } catch (error) {
       dispatch({ type: CONTACT_ERROR, payload: error.response.msg });
@@ -41,6 +62,11 @@ const ContactState = (props) => {
   // Delete Contact
   function deleteContact(id) {
     dispatch({ type: DELETE_CONTACT, payload: id });
+  }
+
+  // Clear Contacts
+  function clearContacts() {
+    dispatch({ type: CLEAR_CONTACTS });
   }
 
   // Set Current Contact
@@ -75,6 +101,7 @@ const ContactState = (props) => {
         current: state.current,
         filtered: state.filtered,
         error: state.error,
+        loading: state.loading,
         addContact,
         deleteContact,
         setCurrent,
@@ -82,6 +109,8 @@ const ContactState = (props) => {
         updateContact,
         filterContacts,
         clearFilter,
+        getContacts,
+        clearContacts,
       }}
     >
       {props.children}

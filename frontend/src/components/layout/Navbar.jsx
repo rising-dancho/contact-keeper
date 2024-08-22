@@ -1,11 +1,14 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import AuthContext from '../../context/auth/authContext';
+import ContactContext from '../../context/contact/contactContext';
 
 const Navbar = ({ title = 'Contact Keeper', icon = 'fas fa-id-card-alt' }) => {
   const authContext = useContext(AuthContext);
-
   const { isAuthenticated, logout, user } = authContext;
+
+  const contactContext = useContext(ContactContext);
+  const { clearContacts } = contactContext;
 
   // console.log(user) //debugging user
   // Only destructure if user exists
@@ -14,6 +17,7 @@ const Navbar = ({ title = 'Contact Keeper', icon = 'fas fa-id-card-alt' }) => {
 
   function onLogout() {
     logout();
+    clearContacts();
   }
 
   const authLinks = (
