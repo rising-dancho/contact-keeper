@@ -23,6 +23,8 @@ const AuthState = (props) => {
     error: null,
   };
 
+  const [state, dispatch] = useReducer(authReducer, initialState);
+
   // Load User
   async function loadUser() {
     // load token into global headers
@@ -35,7 +37,7 @@ const AuthState = (props) => {
         `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/auth`
       );
 
-      // console.log("AUTH DATA", res.data.name)
+      console.log('AUTH DATA', res.data.name);
 
       dispatch({
         type: USER_LOADED,
@@ -117,8 +119,6 @@ const AuthState = (props) => {
       type: CLEAR_ERRORS,
     });
   }
-
-  const [state, dispatch] = useReducer(authReducer, initialState);
 
   return (
     <AuthContext.Provider

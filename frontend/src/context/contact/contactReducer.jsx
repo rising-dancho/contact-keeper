@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   GET_CONTACTS,
   ADD_CONTACT,
@@ -80,6 +79,6 @@ export default (state, action) => {
       };
     }
     default:
-      state;
+      return state;
   }
 };
