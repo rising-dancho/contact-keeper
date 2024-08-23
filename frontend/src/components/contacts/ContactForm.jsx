@@ -2,6 +2,12 @@ import { useContext, useState, useEffect } from 'react';
 import ContactContext from '../../context/contact/contactContext';
 
 const ContactForm = () => {
+  const initialContact = {
+    name: '',
+    email: '',
+    phone: '',
+    type: 'personal',
+  };
   const contactContext = useContext(ContactContext);
   const { addContact, updateContact, current, clearCurrent } = contactContext;
 
@@ -9,21 +15,11 @@ const ContactForm = () => {
     if (current !== null) {
       setContact(current);
     } else {
-      setContact({
-        name: '',
-        email: '',
-        phone: '',
-        type: 'personal',
-      });
+      setContact(initialContact);
     }
-  }, [contactContext, current]);
+  }, [ current]);
 
-  const [contact, setContact] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    type: 'personal',
-  });
+  const [contact, setContact] = useState(initialContact);
 
   const { name, email, phone, type } = contact;
 
@@ -37,14 +33,8 @@ const ContactForm = () => {
       addContact(contact);
     } else {
       updateContact(contact);
+      setContact(initialContact);
     }
-
-    setContact({
-      name: '',
-      email: '',
-      phone: '',
-      type: 'personal',
-    });
   }
 
   function clearAll() {

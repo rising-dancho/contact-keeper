@@ -48,6 +48,7 @@ export default (state, action) => {
         current: null,
         filtered: null,
         error: null,
+        loading: false,
       };
     case SET_CURRENT: {
       return { ...state, current: action.payload };
