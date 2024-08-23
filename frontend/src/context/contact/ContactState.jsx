@@ -36,7 +36,7 @@ const ContactState = (props) => {
       );
       dispatch({ type: GET_CONTACTS, payload: res.data });
     } catch (error) {
-      dispatch({ type: CONTACT_ERROR, payload: error.response.msg });
+      dispatch({ type: CONTACT_ERROR, payload: error.message });
     }
   }
 
@@ -55,13 +55,20 @@ const ContactState = (props) => {
       );
       dispatch({ type: ADD_CONTACT, payload: res.data });
     } catch (error) {
-      dispatch({ type: CONTACT_ERROR, payload: error.response.msg });
+      dispatch({ type: CONTACT_ERROR, payload: error.message });
     }
   }
 
   // Delete Contact
-  function deleteContact(id) {
-    dispatch({ type: DELETE_CONTACT, payload: id });
+  async function deleteContact(_id) {
+    try {
+      await axios.delete(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/contacts/${_id}`
+      );
+      dispatch({ type: DELETE_CONTACT, payload: _id });
+    } catch (error) {
+      dispatch({ type: CONTACT_ERROR, payload: error.message });
+    }
   }
 
   // Clear Contacts
@@ -80,8 +87,23 @@ const ContactState = (props) => {
   }
 
   // Update Contact
-  function updateContact(contact) {
-    dispatch({ type: UPDATE_CONTACT, payload: contact });
+  async function updateContact(contact) {
+    const { _id } = contact;
+    const config = {
+      headers: {
+        'Context-Type': 'application/json',
+      },
+    };
+    try {
+      const res = await axios.post(
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/contacts/${_id}`,
+        contact,
+        config
+      );
+      dispatch({ type: UPDATE_CONTACT, payload: res.data });
+    } catch (error) {
+      dispatch({ type: CONTACT_ERROR, payload: error.message });
+    }
   }
 
   // Filter Contacts

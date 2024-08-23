@@ -5,10 +5,11 @@ const ContactItem = ({ contact }) => {
   const contactContext = useContext(ContactContext);
   const { deleteContact, setCurrent, clearCurrent } = contactContext;
 
-  const { id, name, email, phone, type } = contact;
+  const { _id, name, email, phone, type } = contact;
 
   function onDelete() {
-    deleteContact(id);
+    deleteContact(_id);
+    clearCurrent();
   }
 
   function onEdit() {
@@ -27,7 +28,7 @@ const ContactItem = ({ contact }) => {
         >
           {type.charAt(0).toUpperCase() + type.slice(1)}
         </span>
-      </h3>
+      </h3>0000000000
       <ul className="list">
         {email && (
           <li>

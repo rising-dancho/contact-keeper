@@ -14,10 +14,10 @@ router.get('/', auth, async (req, res) => {
     const contacts = await Contact.find({ user: req.user.id }).sort({
       date: -1,
     });
-    res.send(contacts);
+    res.status(200).json(contacts);
   } catch (error) {
     console.log(error.message);
-    res.status(500).send('Server Error');
+    res.status(500).json({ msg: 'Server Error' });
   }
 });
 
@@ -30,7 +30,7 @@ router.post(
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      return res.status(400).send({ errors: errors.array() });
+      return res.status(400).json({ errors: errors.array() });
     }
 
     const { name, email, phone, type } = req.body;
@@ -45,15 +45,15 @@ router.post(
       });
 
       const contact = await newContact.save();
-      res.json(contact);
+      res.status(201).json(contact);
     } catch (error) {
       console.log(error.message);
-      res.status(500).send('Server Error');
+      res.status(500).json({ msg: 'Server Error' });
     }
   }
 );
 
-// @route   POST api/v1/contacts/:id
+// @route   PUT api/v1/contacts/:id
 // @desc    Update a contact
 // @access  Private
 router.put('/:id', auth, async (req, res) => {
@@ -69,11 +69,11 @@ router.put('/:id', auth, async (req, res) => {
   try {
     let contact = await Contact.findById(req.params.id);
 
-    if (!contact) return res.status(404).send({ msg: 'Contact not found' });
+    if (!contact) return res.status(404).json({ msg: 'Contact not found' });
 
     // Make sure  user owns contact
     if (contact.user.toString() !== req.user.id) {
-      return res.status(401).send({ msg: 'Not authorized' });
+      return res.status(401).json({ msg: 'Not authorized' });
     }
 
     contact = await Contact.findByIdAndUpdate(
@@ -82,33 +82,33 @@ router.put('/:id', auth, async (req, res) => {
       { new: true }
     );
 
-    res.json(contact);
+    res.status(200).json(contact);
   } catch (error) {
     console.log(error.message);
-    res.status(500).send('Server Error');
+    res.status(500).json({ msg: 'Server Error' });
   }
 });
 
-// @route   POST api/v1/contacts/:id
+// @route   DELETE api/v1/contacts/:id
 // @desc    Delete a contact
 // @access  Private
 router.delete('/:id', auth, async (req, res) => {
   try {
     let contact = await Contact.findById(req.params.id);
 
-    if (!contact) return res.status(404).send({ msg: 'Contact not found' });
+    if (!contact) return res.status(404).json({ msg: 'Contact not found' });
 
     // Make sure  user owns contact
     if (contact.user.toString() !== req.user.id) {
-      return res.status(401).send({ msg: 'Not authorized' });
+      return res.status(401).json({ msg: 'Not authorized' });
     }
 
     await Contact.findByIdAndDelete(req.params.id);
 
-    res.json({ msg: 'Contact deleted' });
+    res.status(200).json({ msg: 'Contact deleted' });
   } catch (error) {
     console.log(error.message);
-    res.status(500).send('Server Error');
+    res.status(500).json({ msg: 'Server Error' });
   }
 });
 
