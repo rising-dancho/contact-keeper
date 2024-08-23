@@ -21,7 +21,7 @@ const ContactState = (props) => {
     current: null,
     filtered: null,
     error: null,
-    loading: true,
+    loading: false,
   };
 
   const [state, dispatch] = useReducer(contactReducer, initialState);

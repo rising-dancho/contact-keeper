@@ -37,7 +37,7 @@ const AuthState = (props) => {
         `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/auth`
       );
 
-      console.log('AUTH DATA', res.data.name);
+      console.log('AUTH DATA', res.data);
 
       dispatch({
         type: USER_LOADED,
