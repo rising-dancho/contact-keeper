@@ -45,9 +45,9 @@ export default (state, action) => {
       return {
         ...state,
         contacts: null,
+        current: null,
         filtered: null,
         error: null,
-        current: null,
       };
     case SET_CURRENT: {
       return { ...state, current: action.payload };
