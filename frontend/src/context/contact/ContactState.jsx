@@ -30,9 +30,7 @@ const ContactState = (props) => {
   async function getContacts() {
     try {
       const res = await axios.get(
-        `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/contacts`,
-        contact,
-        config
+        `${import.meta.env.VITE_SERVER_BASE_URL}/api/v1/contacts`
       );
       dispatch({ type: GET_CONTACTS, payload: res.data });
     } catch (error) {
