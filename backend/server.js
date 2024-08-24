@@ -3,30 +3,30 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const dotenv = require('dotenv');
 
-// enable .env variable: "process" is a global object available in node applications
+// Enable .env variables
 dotenv.config();
 
 const app = express();
 
-// Enable CORS for all routes
-app.use(cors());
+// Enable CORS for all routes, allowing requests from your client URL
+const corsOptions = {
+  origin: process.env.CLIENT_URL, // Replace this with the specific client URL
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 
-// Connect Database
+// Connect to Database
 connectDB();
 
 // Init Middleware
 app.use(express.json());
 
-const PORT = process.env.PORT;
-const baseUrl = `${process.env.CLIENT_URL}/api/v1`;
+const PORT = process.env.PORT || 8080;
 
-// app.get('/', (req, res) => res.send({ msg: 'App: Contact Keeper' }));
+// Define routes without using baseUrl for client URL
+app.use('/api/v1/users', require('./routes/users'));
+app.use('/api/v1/auth', require('./routes/auth'));
+app.use('/api/v1/contacts', require('./routes/contacts'));
 
-// Define routes
-app.use(`${baseUrl}/users`, require('./routes/users'));
-app.use(`${baseUrl}/auth`, require('./routes/auth'));
-app.use(`${baseUrl}/contacts`, require('./routes/contacts'));
-
+// Start server
 app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
-
-// express-validator, what is it for? https://chatgpt.com/share/ee1118bd-4d17-4232-bea4-db50d85467e6
