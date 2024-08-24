@@ -11,7 +11,8 @@ const app = express();
 // Enable CORS for all routes, allowing requests from your client URL
 const corsOptions = {
   origin: process.env.CLIENT_URL,
-  optionsSuccessStatus: 200,
+  credentials: true, //access-control-allow-credentials:true
+  optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
 
