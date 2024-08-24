@@ -10,7 +10,7 @@ const app = express();
 
 // Enable CORS for all routes, allowing requests from your client URL
 const corsOptions = {
-  origin: process.env.CLIENT_URL, // Replace this with the specific client URL
+  origin: process.env.CLIENT_URL,
   optionsSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
@@ -23,7 +23,7 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 8080;
 
-// Define routes without using baseUrl for client URL
+// Define routes with the correct base path
 app.use('/api/v1/users', require('./routes/users'));
 app.use('/api/v1/auth', require('./routes/auth'));
 app.use('/api/v1/contacts', require('./routes/contacts'));
