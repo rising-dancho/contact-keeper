@@ -10,7 +10,7 @@ import PrivateRoute from './components/routing/PrivateRoute';
 // Context
 import ContactState from './context/contact/ContactState';
 import AuthState from './context/auth/AuthState';
-import AlertState from './context/alert/alertState';
+// import AlertState from './context/alert/AlertState';
 // auth
 import setAuthToken from './utils/setAuthToken';
 
@@ -23,7 +23,7 @@ function App() {
   return (
     <AuthState>
       <ContactState>
-        <AlertState>
+        {/* <AlertState> */}
           <Router>
             <div className="App">
               <Navbar />
@@ -40,7 +40,7 @@ function App() {
               </div>
             </div>
           </Router>
-        </AlertState>
+        {/* </AlertState> */}
       </ContactState>
     </AuthState>
   );
