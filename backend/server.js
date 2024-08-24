@@ -18,7 +18,7 @@ connectDB();
 app.use(express.json());
 
 const PORT = process.env.PORT;
-const baseUrl = '/api/v1';
+const baseUrl = `${process.env.CLIENT_URL}/api/v1`;
 
 // app.get('/', (req, res) => res.send({ msg: 'App: Contact Keeper' }));
 
