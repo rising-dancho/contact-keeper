@@ -4,7 +4,7 @@ import Home from './components/pages/Home';
 import About from './components/pages/About';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
-import Alerts from './components/layout/Alerts';
+// import Alerts from './components/layout/Alerts';
 import PrivateRoute from './components/routing/PrivateRoute';
 
 // Context
@@ -28,7 +28,7 @@ function App() {
             <div className="App">
               <Navbar />
               <div className="container">
-                <Alerts />
+                {/* <Alerts /> */}
                 <Routes>
                   <Route element={<PrivateRoute />}>
                     <Route path="/" element={<Home />} />

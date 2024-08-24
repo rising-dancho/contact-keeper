@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import AlertContext from '../../context/alert/alertContext';
+// import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
 import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   // Alert
-  const alertContext = useContext(AlertContext);
-  const { setAlert } = alertContext;
+  // const alertContext = useContext(AlertContext);
+  // const { setAlert } = alertContext;
 
   // Auth
   const authContext = useContext(AuthContext);
@@ -25,7 +25,7 @@ const Register = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      setAlert('Registration successful!', 'success');
+      // setAlert('Registration successful!', 'success');
       setUser({
         name: '',
         email: '',
@@ -36,7 +36,7 @@ const Register = () => {
     }
 
     if (error) {
-      setAlert(error, 'danger');
+      // setAlert(error, 'danger');
       clearErrors();
     }
     // eslint-disable-next-line
@@ -54,9 +54,9 @@ const Register = () => {
       password === '' ||
       confirmPassword === ''
     ) {
-      setAlert('Please enter all fields.', 'danger');
+      // setAlert('Please enter all fields.', 'danger');
     } else if (password !== confirmPassword) {
-      setAlert('Passwords do not match', 'danger');
+      // setAlert('Passwords do not match', 'danger');
     } else {
       register({
         name,

@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
-import AlertContext from '../../context/alert/alertContext';
+// import AlertContext from '../../context/alert/alertContext';
 import AuthContext from '../../context/auth/authContext';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   // Alert
-  const alertContext = useContext(AlertContext);
-  const { setAlert } = alertContext;
+  // const alertContext = useContext(AlertContext);
+  // const { setAlert } = alertContext;
 
   // Auth
   const authContext = useContext(AuthContext);
@@ -27,7 +27,7 @@ const Login = () => {
     }
 
     if (error) {
-      setAlert(error, 'danger');
+      // setAlert(error, 'danger');
       clearErrors();
     }
     // eslint-disable-next-line
@@ -40,14 +40,14 @@ const Login = () => {
   function onSubmit(e) {
     e.preventDefault();
     if (email === '' || password === '') {
-      setAlert('Please enter all fields.', 'danger');
+      // setAlert('Please enter all fields.', 'danger');
     } else {
       login({
         email,
         password,
       });
       if (!error === 'Invalid Credentials') {
-        setAlert(`Login successful!`, 'success');
+        // setAlert(`Login successful!`, 'success');
       }
     }
   }
@@ -65,7 +65,7 @@ const Login = () => {
             name="email"
             value={email}
             onChange={onChange}
-            // required
+            required
           />
         </div>
         <div className="form-group">
@@ -75,7 +75,7 @@ const Login = () => {
             name="password"
             value={password}
             onChange={onChange}
-            // required
+            required
           />
         </div>
         <input
