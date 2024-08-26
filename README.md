@@ -24,4 +24,4 @@ npm run build
 https://contact-keeper-client-sigma.vercel.app/
 
 ### Needs bug fix for backend:
-- i will be redoing the backend or at least updating the backend to make it ES6 syntax (import) instead of Common JS (require).
+- i will be redoing the backend or at least updating the backend to make it ES6 syntax (import) instead of Common JS (require). i suspect that there something with how the backend was implemented that's making the deployment not working properly. currently unable to fetch with using the existing routes when deployed with Vercel
