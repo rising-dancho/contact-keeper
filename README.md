@@ -22,3 +22,6 @@ npm run build
 
 ### Demo
 https://contact-keeper-client-sigma.vercel.app/
+
+### Needs bug fix for backend:
+- i will be redoing the backend or at least updating the backend to make it ES6 syntax (import) instead of Common JS (require).
